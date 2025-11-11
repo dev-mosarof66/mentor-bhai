@@ -5,10 +5,26 @@ import { Button } from "../ui/button";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { AnimatePresence, motion } from "motion/react";
 import ThemeSetter from "./theme";
+import { usePathname } from "next/navigation";
 const Navbar = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isAuthRoutes =
+    pathname === "/signin"
+      ? true
+      : pathname === "/signup"
+      ? true
+      : pathname === "/otp"
+      ? true
+      : false;
+
   return (
-    <nav className="w-full flex items-center justify-center px-4 py-3 text-foreground fixed top-0 left-0 backdrop-blur-sm">
+    <nav
+      className={`w-full ${
+        isAuthRoutes && "hidden"
+      } flex items-center justify-center px-4 py-3 text-foreground fixed top-0 left-0 backdrop-blur-sm`}
+    >
       <header
         key={"modal"}
         className="w-full max-w-7xl mx-auto flex items-center justify-between"
