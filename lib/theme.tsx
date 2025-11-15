@@ -53,7 +53,6 @@ const ThemeProvider = ({ children }: Props) => {
   }, []);
 
   if (!mounted) {
-    // Prevents flicker on initial load
     return <div className="w-full h-screen bg-gray-200 dark:bg-gray-900" />;
   }
 
