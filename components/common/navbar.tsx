@@ -7,10 +7,11 @@ import Image from "next/image";
 import { authClient } from "@/lib/auth-client";
 import UserProfileButton from "./user-profile-button";
 import { useState } from "react";
+import { Skeleton } from "../ui/skeleton";
 
 const Navbar = () => {
   const router = useRouter();
-  const { data } = authClient.useSession();
+  const { data, isPending } = authClient.useSession();
   const [showMenu, setShowMenu] = useState<boolean>(false);
 
   return (
@@ -36,24 +37,30 @@ const Navbar = () => {
           <li>
             <ThemeSetter />
           </li>
-          <li>
-            {data ? (
-              <div
-                onClick={() => setShowMenu((showMenu) => !showMenu)}
-                className="border border-orange-600 hover:border-orange-700 active:scale-95 rounded-full cursor-pointer transition-all duration-300 delay-75"
-              >
-                <UserProfileButton showMenu={showMenu} />
-              </div>
-            ) : (
-              <Button
-                onClick={() => router.push("/auth")}
-                className="px-4 sm:px-6 text-xs sm:text-sm text-white dark:text-black font-semibold"
-                size="sm"
-              >
-                Get Started
-              </Button>
-            )}
-          </li>
+          {isPending ? (
+            <li className="size-8 rounded-full border border-amber-300 bg-purple-950 animate-pulse">
+              <Skeleton />
+            </li>
+          ) : (
+            <li>
+              {data ? (
+                <div
+                  onClick={() => setShowMenu((showMenu) => !showMenu)}
+                  className="border border-orange-600 hover:border-orange-700 active:scale-95 rounded-full cursor-pointer transition-all duration-300 delay-75"
+                >
+                  <UserProfileButton showMenu={showMenu} />
+                </div>
+              ) : (
+                <Button
+                  onClick={() => router.push("/auth")}
+                  className="px-4 sm:px-6 text-xs sm:text-sm text-white dark:text-black font-semibold"
+                  size="sm"
+                >
+                  Get Started
+                </Button>
+              )}
+            </li>
+          )}
         </ul>
       </header>
     </nav>
