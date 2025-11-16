@@ -24,7 +24,7 @@ const Navbar = () => {
               height={25}
               alt="Logo"
             />
-            <span className="text-base text-orange-400 dark:text-orange-100">
+            <span className="text-base  sm:block text-orange-400 dark:text-orange-100">
               Mentor Bhai
             </span>
           </li>
@@ -33,12 +33,12 @@ const Navbar = () => {
           <li>
             <ThemeSetter />
           </li>
-          <li onClick={() => router.push("/sign-in")}>
+          <li onClick={() => router.push("/auth")}>
             <Button
-              className="px-4 sm:px-6 text-white dark:text-black font-semibold"
+              className="px-4 sm:px-6 text-xs sm:text-sm text-white dark:text-black font-semibold"
               size="sm"
             >
-              Login
+              Get Started
             </Button>
           </li>
         </ul>
