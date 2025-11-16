@@ -8,7 +8,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-// FAQ DATA ARRAY
+
 const faqs = [
   {
     question: "How does the AI mentor help me learn English?",
@@ -47,7 +47,7 @@ const FAQSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-4xl font-bold text-gray-900 dark:text-gray-100"
+          className="text-4xl text-center font-bold text-gray-900 dark:text-gray-100"
         >
           Frequently Asked Questions
         </motion.h2>
@@ -56,7 +56,7 @@ const FAQSection = () => {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-gray-600 dark:text-gray-400 max-w-xl"
+          className="text-gray-600 text-center dark:text-gray-400 max-w-xl"
         >
           Here are the most common questions people ask about our AI-powered English mentorship platform.
         </motion.p>

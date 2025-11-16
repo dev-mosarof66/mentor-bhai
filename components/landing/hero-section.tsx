@@ -4,8 +4,12 @@ import { FaSuperpowers } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import GradientBackground from "./gradient-background";
+import { useRouter } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
 
 const HeroSection = () => {
+  const router = useRouter();
+  const { data } = authClient.useSession();
   return (
     <section className="w-full relative">
       <GradientBackground />
@@ -41,7 +45,12 @@ const HeroSection = () => {
           </p>
           {/* button  */}
 
-          <div className="flex items-center justify-between px-12 py-2 border bg-orange-600 rounded-md font-semibold  hover:bg-orange-600 cursor-pointer transition-all duration-300 delay-75 -rotate-1  group">
+          <div
+            onClick={() =>
+              data?.user ? router.push("/auth") : router.push("/auth")
+            }
+            className="flex items-center justify-between px-12 py-2 border bg-orange-600 rounded-md font-semibold  hover:bg-orange-600 cursor-pointer transition-all duration-300 delay-75 -rotate-1  group"
+          >
             <p>Try Now</p>
             <MdKeyboardDoubleArrowRight className="text-2xl translate-x-5 animate-pulse group-hover:animate-none group-hover:translate-x-7 transition-all duration-300 delay-75" />
           </div>

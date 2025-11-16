@@ -4,17 +4,20 @@ import ThemeSetter from "./theme";
 import { useRouter } from "next/navigation";
 import Logo from "@/public/logo.png";
 import Image from "next/image";
+import { authClient } from "@/lib/auth-client";
+import UserProfileButton from "./user-profile-button";
+import { useState } from "react";
 
 const Navbar = () => {
   const router = useRouter();
+  const { data } = authClient.useSession();
+  const [showMenu, setShowMenu] = useState<boolean>(false);
 
   return (
     <nav
       className={`w-full flex items-center justify-center px-4 py-3 text-foreground fixed top-0 left-0 z-50 backdrop-blur-sm`}
     >
-      <header
-        className="w-full max-w-7xl mx-auto flex items-center justify-between"
-      >
+      <header className="w-full max-w-7xl mx-auto flex items-center justify-between relative">
         <ul>
           <li className="flex items-center gap-2 font-semibold">
             <Image
@@ -33,13 +36,23 @@ const Navbar = () => {
           <li>
             <ThemeSetter />
           </li>
-          <li onClick={() => router.push("/auth")}>
-            <Button
-              className="px-4 sm:px-6 text-xs sm:text-sm text-white dark:text-black font-semibold"
-              size="sm"
-            >
-              Get Started
-            </Button>
+          <li>
+            {data ? (
+              <div
+                onClick={() => setShowMenu((showMenu) => !showMenu)}
+                className="border border-orange-600 hover:border-orange-700 active:scale-95 rounded-full cursor-pointer transition-all duration-300 delay-75"
+              >
+                <UserProfileButton showMenu={showMenu} />
+              </div>
+            ) : (
+              <Button
+                onClick={() => router.push("/auth")}
+                className="px-4 sm:px-6 text-xs sm:text-sm text-white dark:text-black font-semibold"
+                size="sm"
+              >
+                Get Started
+              </Button>
+            )}
           </li>
         </ul>
       </header>

@@ -3,8 +3,12 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Sparkles } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
 
 const CTASection = () => {
+  const router = useRouter();
+  const { data } = authClient.useSession();
   return (
     <section className="relative w-full py-28 px-4 overflow-hidden bg-white dark:bg-neutral-900 text-black dark:text-white flex items-center justify-center">
       {/* Animated Gradient Blobs */}
@@ -54,11 +58,17 @@ const CTASection = () => {
 
         <p className="text-gray-700 dark:text-gray-300 max-w-xl text-lg">
           Join thousands of learners improving their English daily with
-          AI-powered mentorship, personalized lessons, and real-time practice tools.
+          AI-powered mentorship, personalized lessons, and real-time practice
+          tools.
         </p>
 
         <motion.div whileHover={{ scale: 1.05 }}>
-          <Button className="px-8 py-6 text-lg font-semibold bg-orange-600 hover:bg-orange-700">
+          <Button
+            onClick={() =>
+              data?.user ? router.push("/auth") : router.push("/auth")
+            }
+            className="px-8 py-6 text-lg font-semibold bg-orange-600 hover:bg-orange-700"
+          >
             Start Learning Now
           </Button>
         </motion.div>

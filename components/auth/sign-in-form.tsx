@@ -15,29 +15,53 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
+import { Checkbox } from "@/components/ui/checkbox";
 
 import { Eye, EyeOff } from "lucide-react";
+import { Spinner } from "../ui/spinner";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const signInSchema = z.object({
-  email: z.string().min(1, "Email is required"),
+  email: z.string().email("Invalid email address"),
   password: z.string().min(1, "Password is required"),
+  rememberMe: z.boolean(),
 });
 
-type SignInFormValues = z.infer<typeof signInSchema>;
-
 const SignInForm = () => {
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const router = useRouter();
 
-  const form = useForm<SignInFormValues>({
+  const form = useForm<z.infer<typeof signInSchema>>({
     resolver: zodResolver(signInSchema),
     defaultValues: {
       email: "",
       password: "",
+      rememberMe: false,
     },
   });
 
-  const onSubmit = (data: SignInFormValues) => {
-    console.log("Form submitted:", data);
+  const onSubmit = (data: z.infer<typeof signInSchema>) => {
+    setLoading(true);
+    authClient.signIn.email(
+      {
+        email: data.email,
+        password: data.password,
+        rememberMe: data.rememberMe,
+      },
+      {
+        onSuccess: () => {
+          router.push("/");
+          setLoading(false);
+        },
+        onError: (error) => {
+          toast.error(error.error.message);
+          setLoading(false);
+        },
+      }
+    );
   };
 
   return (
@@ -46,7 +70,7 @@ const SignInForm = () => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="w-full flex flex-col gap-6"
       >
-        {/* EMAIL */}
+        {/* EMAIL FIELD */}
         <FormField
           control={form.control}
           name="email"
@@ -61,12 +85,12 @@ const SignInForm = () => {
           )}
         />
 
-        {/* PASSWORD */}
+        {/* PASSWORD FIELD */}
         <FormField
           control={form.control}
           name="password"
           render={({ field }) => (
-            <FormItem className="relative">
+            <FormItem>
               <FormLabel>Password</FormLabel>
               <div className="relative">
                 <FormControl>
@@ -77,7 +101,6 @@ const SignInForm = () => {
                   />
                 </FormControl>
 
-                {/* Toggle Password Visibility */}
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
@@ -90,9 +113,10 @@ const SignInForm = () => {
                   )}
                 </button>
               </div>
-              <div className="w-full flex items-center justify-between">
+
+              <div className="flex items-center justify-between relative">
                 <FormMessage className="text-xs" />
-                <span className="absolute right-0 -bottom-4 text-xs text-orange-600 cursor-pointer hover:underline">
+                <span className="absolute right-0 top-0.5 text-xs text-orange-600 cursor-pointer hover:underline">
                   Forgot password?
                 </span>
               </div>
@@ -100,15 +124,32 @@ const SignInForm = () => {
           )}
         />
 
+        <FormField
+          control={form.control}
+          name="rememberMe"
+          render={({ field }) => (
+            <FormItem className="flex items-center gap-2">
+              <FormControl>
+                <Checkbox
+                  id="rememberMe"
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              </FormControl>
+              <FormLabel htmlFor="rememberMe">Remember Me</FormLabel>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
         {/* SUBMIT BUTTON */}
-        <div className="w-full pt-4">
-          <Button
-            type="submit"
-            className="w-full bg-orange-600 hover:bg-orange-700"
-          >
-            Sign In
-          </Button>
-        </div>
+        <Button
+          disabled={loading}
+          type="submit"
+          className="w-full bg-orange-600 hover:bg-orange-700 my-2"
+        >
+          {loading ? <Spinner /> : "Sign In"}
+        </Button>
       </form>
     </Form>
   );

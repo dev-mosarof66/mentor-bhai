@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import ThemeProvider from "@/lib/theme";
 import { generateMetadataDescription } from "@/utils/description-generator";
-import './globals.css'
+import "./globals.css";
+import { Toaster } from "sonner";
 export const metadata: Metadata = {
   title: "Mentor Bhai - AI powered Mentorship",
   description: `${generateMetadataDescription("home")}`,
@@ -19,6 +20,7 @@ export default function RootLayout({
           <div className="w-full h-screen flex flex-col">
             <div className="w-full flex-1">{children}</div>
           </div>
+          <Toaster position="top-right" />
         </ThemeProvider>
       </body>
     </html>

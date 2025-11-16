@@ -5,6 +5,8 @@ import { Input } from "@/components/ui/input";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Logo from "@/public/logo.png";
+import { useState } from "react";
+import { Spinner } from "../ui/spinner";
 
 const services = [
   { name: "AI Mentorship", href: "#" },
@@ -21,8 +23,21 @@ const contact = [
 ];
 
 const FooterSection = () => {
+  const [email, setEmail] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const handleSubscribe = async () => {
+    try {
+      setLoading(true);
+      console.log("handle subscribe clicked.");
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
-    <footer className="w-full bg-white dark:bg-gray-900 text-black dark:text-white py-10 px-6 font-roboto">
+    <footer className="w-full bg-white dark:bg-black text-black dark:text-white py-10 px-6 font-roboto">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Logo & Description */}
         <div className="flex flex-col gap-4">
@@ -81,21 +96,27 @@ const FooterSection = () => {
         </div>
 
         {/* Newsletter / Email Subscription */}
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-2">
           <h3 className="font-semibold text-gray-500 dark:text-gray-300">
             Subscribe
           </h3>
           <p className="text-gray-400">
             Get updates and tips straight to your inbox.
           </p>
-          <div className="flex gap-2">
+          <div className="w-full flex md:flex-col gap-2 md:gap-4">
             <Input
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Your email"
-              className="flex-1  text-white border-neutral-700"
+              className="w-96 md:w-full  text-white border-neutral-700 py-3"
             />
-            <Button className="bg-orange-600 hover:bg-orange-700">
-              Subscribe
+            <Button
+              onClick={handleSubscribe}
+              disabled={loading}
+              className="w-32 md:w-full bg-orange-600 hover:bg-orange-700"
+            >
+              {loading ? <Spinner /> : "Subscribe"}
             </Button>
           </div>
         </div>
