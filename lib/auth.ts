@@ -1,3 +1,4 @@
+import { sendEmail } from "@/utils/send-email";
 import { betterAuth } from "better-auth";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { MongoClient } from 'mongodb'
@@ -10,6 +11,7 @@ export const auth = betterAuth({
     database: mongodbAdapter(db, { client }),
     emailAndPassword: {
         enabled: true,
+        requireEmailVerification: true,
     },
     socialProviders: {
         google: {
@@ -18,4 +20,19 @@ export const auth = betterAuth({
             prompt: "select_account",
         },
     },
+    emailVerification: {
+        sendOnSignUp: true,
+        autoSignInAfterVerification: false,
+        sendVerificationEmail: async ({ user, url }) => {
+            const link = `${process.env.BETTER_AUTH_URL!}/api/auth/verify-email?token=${encodeURIComponent(url.split('token=')[1])}`
+            await sendEmail({
+                to: user.email,
+                subject: 'Verify your email',
+                link,
+                name: user.name
+            })
+        }
+
+    },
+
 });

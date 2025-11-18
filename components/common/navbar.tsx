@@ -20,10 +20,10 @@ const Navbar = () => {
     >
       <header className="w-full max-w-7xl mx-auto flex items-center justify-between relative">
         <ul>
-          <li className="flex items-center gap-2 font-semibold">
+          <li className="flex items-center gap-1 font-semibold">
             <Image
               src={Logo}
-              className="w-7 md:w-8 transition-all duration-300 delay-75"
+              className="w-6 sm:w-7 transition-all duration-300 delay-75"
               width={30}
               height={25}
               alt="Logo"
@@ -53,7 +53,7 @@ const Navbar = () => {
               ) : (
                 <Button
                   onClick={() => router.push("/auth")}
-                  className="px-4 sm:px-6 text-xs sm:text-sm text-white dark:text-black font-semibold"
+                  className="px-2 sm:px-4 text-xs sm:text-sm text-white dark:text-black font-bold"
                   size="sm"
                 >
                   Get Started

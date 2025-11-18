@@ -1,6 +1,5 @@
 "use client";
-
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -21,8 +20,8 @@ import { Spinner } from "../ui/spinner";
 import { Eye, EyeOff } from "lucide-react";
 
 const signUpSchema = z.object({
-  name: z.string().min(3, "Full name must be at least 3 characters"),
-  email: z.string().email("Enter a valid email"),
+  name: z.string().min(6, "Full name must be at least 6 characters"),
+  email: z.email("Invalid email address"),
   password: z.string().min(8, "Password must be at least 8 characters"),
 });
 
@@ -51,12 +50,26 @@ const SignUpForm = () => {
         password: data.password,
       },
       {
-        onSuccess: () => {
-          router.push("/dashboard");
+        onSuccess: ({ data }) => {
+          authClient.sendVerificationEmail(
+            {
+              email: data.user.email,
+            },
+            {
+              onSuccess: () => {
+                localStorage.setItem("xyz", JSON.stringify(data.user.email));
+                router.push(`/verify-email?message=check-your-mailbox`);
+                setLoading(false);
+              },
+              onError: () => {
+                router.push("/error");
+              },
+            }
+          );
           setLoading(false);
         },
-        onError: (error) => {
-          toast.error(error.error.message);
+        onError: ({ error }) => {
+          toast.error(error.message);
           setLoading(false);
         },
       }
@@ -108,27 +121,27 @@ const SignUpForm = () => {
             <FormItem>
               <FormLabel className="text-sm font-medium">Password</FormLabel>
               <FormControl>
-       <div className="relative">
-                <FormControl>
-                  <Input
-                    type={showPassword ? "text" : "password"}
-                    placeholder="********"
-                    {...field}
-                  />
-                </FormControl>
+                <div className="relative">
+                  <FormControl>
+                    <Input
+                      type={showPassword ? "text" : "password"}
+                      placeholder="********"
+                      {...field}
+                    />
+                  </FormControl>
 
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-600 cursor-pointer transition-all duration-300 delay-75"
-                >
-                  {showPassword ? (
-                    <EyeOff className="h-5 w-5" />
-                  ) : (
-                    <Eye className="h-5 w-5" />
-                  )}
-                </button>
-              </div>
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-600 cursor-pointer transition-all duration-300 delay-75"
+                  >
+                    {showPassword ? (
+                      <EyeOff className="h-5 w-5" />
+                    ) : (
+                      <Eye className="h-5 w-5" />
+                    )}
+                  </button>
+                </div>
               </FormControl>
               <FormMessage className="text-red-500 text-sm" />
             </FormItem>

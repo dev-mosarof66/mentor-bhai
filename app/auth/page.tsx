@@ -11,7 +11,7 @@ const AuthPage = () => {
   return (
     <section className="w-full max-w-md flex items-center justify-center">
       <BackButton />
-      <div className="w-full h-full flex flex-col gap-4 p-4 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm bg-white dark:bg-neutral-900">
+      <div className="w-full flex flex-col gap-4 p-4 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm bg-white dark:bg-neutral-900">
         <Tabs defaultValue="signin" className="w-full flex flex-col gap-4">
           {/* Tabs Navigation */}
           <div className="w-full flex flex-col gap-4">

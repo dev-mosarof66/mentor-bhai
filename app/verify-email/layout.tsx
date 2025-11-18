@@ -5,9 +5,8 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { ReactNode } from "react";
 
-
 export const metadata: Metadata = {
-  title: "Auth | Mentor Bhai",
+  title: "Verify Email | Mentor Bhai",
   description: `${generateMetadataDescription("auth")}`,
 };
 
@@ -20,9 +19,12 @@ const AuthLayout = async ({ children }: Props) => {
     headers: await headers(),
   });
 
+  console.log(session);
+
   if (!!session) {
     redirect("/");
   }
+
   return (
     <div className="w-full min-h-screen flex flex-col items-center justify-center relative p-2">
       <div className="w-full h-full px-4 flex items-center justify-center">

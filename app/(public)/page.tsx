@@ -1,4 +1,3 @@
-"use client";
 import CTASection from "@/components/landing/cta";
 import FAQSection from "@/components/landing/faq-section";
 import FeatureSection from "@/components/landing/feature-section";

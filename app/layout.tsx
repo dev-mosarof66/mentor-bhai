@@ -3,6 +3,7 @@ import ThemeProvider from "@/lib/theme";
 import { generateMetadataDescription } from "@/utils/description-generator";
 import "./globals.css";
 import { Toaster } from "sonner";
+
 export const metadata: Metadata = {
   title: "Mentor Bhai - AI powered Mentorship",
   description: `${generateMetadataDescription("home")}`,
