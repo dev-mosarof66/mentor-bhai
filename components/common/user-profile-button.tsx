@@ -19,9 +19,9 @@ const UserProfileButton = ({ showMenu }: { showMenu: boolean }) => {
   return (
     <div className="relative flex items-center">
       {/* Avatar */}
-      <Avatar className="size-7  cursor-pointer">
+      <Avatar className="size-[26px] sm:size-7  cursor-pointer">
         {isPending ? (
-          <Skeleton className="size-7 bg-black rounded-full" />
+          <Skeleton className="size-[26px]  sm:size-7 bg-black rounded-full" />
         ) : (
           <>
             <AvatarImage src={data?.user?.image || ""} alt="User" />

@@ -38,7 +38,7 @@ const Navbar = () => {
             <ThemeSetter />
           </li>
           {isPending ? (
-            <li className="size-8 rounded-full border border-amber-300 bg-purple-950 animate-pulse">
+            <li className="size-7 rounded-full border border-amber-300 bg-purple-950 animate-pulse">
               <Skeleton />
             </li>
           ) : (

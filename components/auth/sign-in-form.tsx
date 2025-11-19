@@ -56,8 +56,25 @@ const SignInForm = () => {
           router.push("/");
           setLoading(false);
         },
-        onError: (error) => {
-          toast.error(error.error.message);
+        onError: ({ error }) => {
+          toast.error(error.message);
+          if (error.status === 403) {
+            authClient.sendVerificationEmail(
+              {
+                email: data.email,
+              },
+              {
+                onSuccess: () => {
+                  localStorage.setItem("xyz", JSON.stringify(data.email));
+                  router.push(`/verify-email?message=check-your-mailbox`);
+                  setLoading(false);
+                },
+                onError: () => {
+                  router.push("/error");
+                },
+              }
+            );
+          }
           setLoading(false);
         },
       }

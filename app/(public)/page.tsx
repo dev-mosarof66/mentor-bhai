@@ -1,10 +1,14 @@
+"use client";
 import CTASection from "@/components/landing/cta";
 import FAQSection from "@/components/landing/faq-section";
 import FeatureSection from "@/components/landing/feature-section";
 import HeroSection from "@/components/landing/hero-section";
 import PricingSection from "@/components/landing/pricing-section";
+import { authClient } from "@/lib/auth-client";
 
 const LandingPage = () => {
+  const { data } = authClient.useSession();
+  console.log(data);
 
   return (
     <div

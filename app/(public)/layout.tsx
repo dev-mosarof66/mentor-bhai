@@ -1,23 +1,34 @@
-"use client";
 import Navbar from "@/components/common/navbar";
 import Footer from "@/components/landing/footer";
-import { Spinner } from "@/components/ui/spinner";
-import { authClient } from "@/lib/auth-client";
+import { auth } from "@/lib/auth";
+import { redirect } from "next/navigation";
+import { headers } from "next/headers";
+import { fetchUserInfo } from "../onboarding/layout";
+import { connectDB } from "@/config/db";
 
-export default function RootLayout({
+connectDB();
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { isPending } = authClient.useSession();
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
 
-  if (isPending) {
-    return (
-      <div className="w-full h-screen flex items-center justify-center">
-        <Spinner />
-      </div>
-    );
+  let userInfo;
+  if (session) {
+    userInfo = await fetchUserInfo(session.session.userId);
   }
+
+  if (!userInfo && session) {
+    redirect("/onboarding");
+  }
+  if (userInfo) {
+    redirect("/dashboard");
+  }
+
   return (
     <div className="w-full h-screen flex flex-col">
       <Navbar />
