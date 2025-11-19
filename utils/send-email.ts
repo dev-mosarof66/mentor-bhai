@@ -1,17 +1,13 @@
 import nodemailer from "nodemailer";
-import ejs from "ejs";
-import path from "path";
 
 export const sendEmail = async ({
   to,
   subject,
-  link,
-  name,
+  html
 }: {
   to: string;
   subject: string;
-  link: string;
-  name: string;
+  html: string
 }) => {
 
   const transporter = nodemailer.createTransport({
@@ -24,12 +20,6 @@ export const sendEmail = async ({
     },
   });
 
-  const templatePath = path.join(process.cwd(), "views", "email-verification.ejs");
-
-  const html = await ejs.renderFile(templatePath, {
-    name,
-    link,
-  });
 
 
   await transporter.sendMail({

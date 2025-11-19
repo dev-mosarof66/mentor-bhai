@@ -13,14 +13,13 @@ import { useRouter } from "next/navigation";
 import { MdLogin } from "react-icons/md";
 import { motion } from "framer-motion";
 
-const VerifySuccess = () => {
+const VerifySuccess = ({ title, body }: { title: string; body: string }) => {
   const router = useRouter();
 
   return (
     <div className="w-full h-full flex items-center justify-center px-4">
       <Card className="w-full max-w-md shadow-xl border border-green-300  backdrop-blur">
         <CardHeader className="text-center space-y-3">
-
           <motion.div
             initial={{ scale: 0.6, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -30,13 +29,10 @@ const VerifySuccess = () => {
             <CheckCircle className="h-14 w-14 text-green-600 drop-shadow-md" />
           </motion.div>
 
-          <CardTitle className="text-3xl font-semibold">
-            Email Verified
-          </CardTitle>
+          <CardTitle className="text-3xl font-semibold">{title}</CardTitle>
 
           <CardDescription className="text-base text-gray-600">
-            Your account has been successfully verified.  
-            You can now log in to continue.
+            {body}
           </CardDescription>
         </CardHeader>
 

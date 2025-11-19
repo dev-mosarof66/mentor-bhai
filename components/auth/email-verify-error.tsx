@@ -11,7 +11,13 @@ import { toast } from "sonner";
 import { useState } from "react";
 import { Spinner } from "../ui/spinner";
 
-export default function VerifyEmailError() {
+export default function VerifyEmailError({
+  title,
+  page,
+}: {
+  title: string;
+  page: string;
+}) {
   const router = useRouter();
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -26,25 +32,47 @@ export default function VerifyEmailError() {
     }
 
     setLoading(true);
-    authClient.sendVerificationEmail(
-      {
-        email,
-      },
-      {
-        onSuccess: () => {
-          router.push(`/verify-email?message=check-your-mailbox`);
-          setLoading(false);
+    if (page === "verify-email") {
+      authClient.sendVerificationEmail(
+        {
+          email,
         },
-        onError: ({ error }) => {
-          if (error.status === 500) {
-            router.push("/error");
-          } else {
-            toast.error(error.message);
-          }
-          setLoading(false);
+        {
+          onSuccess: () => {
+            router.push(`/verify-email?message=check-your-mailbox`);
+            setLoading(false);
+          },
+          onError: ({ error }) => {
+            if (error.status === 500) {
+              router.push("/error");
+            } else {
+              toast.error(error.message);
+            }
+            setLoading(false);
+          },
+        }
+      );
+    } else {
+      authClient.requestPasswordReset(
+        {
+          email,
         },
-      }
-    );
+        {
+          onSuccess: () => {
+            router.push(`/verify-email?message=check-your-mailbox`);
+            setLoading(false);
+          },
+          onError: ({ error }) => {
+            if (error.status === 500) {
+              router.push("/error");
+            } else {
+              toast.error(error.message);
+            }
+            setLoading(false);
+          },
+        }
+      );
+    }
   };
   return (
     <div className="min-h-full flex items-center justify-center p-6">
@@ -55,9 +83,7 @@ export default function VerifyEmailError() {
         className="w-full max-w-md bg-white dark:bg-gray-900 shadow-xl rounded-2xl p-8 text-center space-y-4"
       >
         <AlertTriangle className="mx-auto h-12 w-12 text-red-600 animate-bounce" />
-        <h1 className="text-2xl font-semibold text-red-700">
-          Invalid Verification Link
-        </h1>
+        <h1 className="text-2xl font-semibold text-red-700">{title}</h1>
         <p className="text-gray-500">
           This email verification link is invalid or has expired. Please request
           a new verification email.

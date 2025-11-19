@@ -10,6 +10,7 @@ import VerifyEmailError from "@/components/auth/email-verify-error";
 import CheckEmail from "@/components/auth/verify-email-box";
 import { Button } from "@/components/ui/button";
 import { TiHome } from "react-icons/ti";
+import ResetPassWordBox from "@/components/auth/reset-password-box";
 
 const VerifyEmailPage = () => {
   const { isPending } = authClient.useSession();
@@ -19,6 +20,9 @@ const VerifyEmailPage = () => {
   const success = params.get("success");
   const invalid = params.get("invalid-token");
   const isMailSent = params.get("message");
+  const token = params.get("token");
+
+  console.log(token)
 
   if (isPending) {
     return (
@@ -29,25 +33,27 @@ const VerifyEmailPage = () => {
   }
 
   if (success) {
-    localStorage.removeItem('xyz')
     return (
       <VerifySuccess
-        title="Email Verified"
-        body="Your account has been successfully verified. You can now log in to
-            continue."
+        title="Password Reseted"
+        body="Your password has been successfully reseted. You can now log in now."
       />
     );
   }
   if (invalid) {
     return (
-      <VerifyEmailError title="Invalid Verification Link" page="verify-email" />
+      <VerifyEmailError title="Invalid Reset Link" page="reset-password" />
     );
   }
 
   if (isMailSent?.toLocaleLowerCase() === "check-your-mailbox") {
     return (
-      <CheckEmail subject="We’ve sent a verification link to your email" />
+      <CheckEmail subject="We’ve sent a password reset link to your email" />
     );
+  }
+
+  if (token) {
+    return <ResetPassWordBox token={token} />;
   }
 
   return (

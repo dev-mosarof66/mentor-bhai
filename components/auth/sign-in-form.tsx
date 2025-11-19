@@ -116,7 +116,10 @@ const SignInForm = () => {
 
               <div className="flex items-center justify-between relative">
                 <FormMessage className="text-xs" />
-                <span className="absolute right-0 top-0.5 text-xs text-orange-600 cursor-pointer hover:underline">
+                <span
+                  onClick={() => router.push("/forget-password")}
+                  className="absolute right-0 top-0.5 text-xs text-orange-600 cursor-pointer hover:underline"
+                >
                   Forgot password?
                 </span>
               </div>
@@ -128,11 +131,12 @@ const SignInForm = () => {
           control={form.control}
           name="rememberMe"
           render={({ field }) => (
-            <FormItem className="flex items-center gap-2">
+            <FormItem className="flex items-center gap-2 cursor-pointer">
               <FormControl>
                 <Checkbox
                   id="rememberMe"
                   checked={field.value}
+                  className="cursor-pointer"
                   onCheckedChange={field.onChange}
                 />
               </FormControl>

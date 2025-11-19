@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Email Verification</title>
+  <title>Reset Password</title>
 
   <style>
     body {
@@ -19,7 +20,7 @@
       background: white;
       border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
     .header {
@@ -54,13 +55,6 @@
       margin-top: 10px;
     }
 
-    .expiry-text {
-      margin-top: 15px;
-      font-size: 14px;
-      color: #ff7a29;
-      font-weight: bold;
-    }
-
     .link-text {
       margin-top: 20px;
       font-size: 14px;
@@ -76,8 +70,13 @@
     }
 
     @media (max-width: 600px) {
-      .container { margin: 10px; }
-      .content { padding: 20px; }
+      .container {
+        margin: 10px;
+      }
+
+      .content {
+        padding: 20px;
+      }
     }
   </style>
 </head>
@@ -86,36 +85,39 @@
   <div class="container">
 
     <div class="header">
-      <h1>Verify Your Email</h1>
+      <h1>Reset Your Password</h1>
     </div>
 
     <div class="content">
       <p>Hi <%= name %>,</p>
 
       <p>
-        Thanks for signing up! Please verify your email address by clicking the button below.
+        We received a request to reset your password. Click the button below to choose a new password.
       </p>
 
-      <a href="<%= link %>" class="btn">Verify Email</a>
+      <a href="<%= link %>" class="btn">Reset Password</a>
 
-      <p class="expiry-text">
+      <p style="margin-top: 15px; font-size: 14px; color: #ff7a29; font-weight: bold;">
         ⚠️ This verification link will expire in <strong>2 minutes</strong>.
       </p>
 
       <div class="link-text">
         <p>If the button doesn't work, copy and paste this link into your browser:</p>
-        <a href="<%= link %>" style="color:#ff7a29;"><%= link %></a>
+        <a href="<%= link %>" style="color:#ff7a29;">
+          <%= link %>
+        </a>
       </div>
 
-      <p>
-        If you didn’t create this account, you may safely ignore this email.
+      <p style="margin-top: 20px;">
+        If you did not request a password reset, you can safely ignore this email — your password will remain unchanged.
       </p>
     </div>
 
     <div class="footer">
-      © <%= new Date().getFullYear() %> Your Company Name — All rights reserved.
+      © <%= new Date().getFullYear() %> Mentor Bhai — All rights reserved.
     </div>
 
   </div>
 </body>
+
 </html>
