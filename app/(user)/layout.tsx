@@ -24,7 +24,7 @@ export default async function RootLayout({
   console.log(userInfo.userId.toString());
 
   return (
-    <div className="w-full h-screen  bg-white dark:bg-linear-to-br dark:from-gray-800 dark:to-gray-900">
+    <div className="w-full h-screen bg-background text-foreground">
       <div className="w-full h-full flex gap-4">
         <SideBar />
         <div className="w-full h-full flex flex-col gap-2 overflow-y-scroll scrollbar-hidden pb-20 sm:pb-0">

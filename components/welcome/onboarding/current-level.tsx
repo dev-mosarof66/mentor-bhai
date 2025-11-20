@@ -10,14 +10,14 @@ const UserEnglishLevel = ({
 }) => {
   return (
     <div className="w-full flex flex-col gap-6">
-      <h2 className="text-2xl font-semibold text-orange-600 text-center">
+      <h2 className="text-2xl font-semibold text-primary text-center">
         Select Your Current English Level
       </h2>
-      <p className="text-gray-600 dark:text-gray-400">
+      <p className="text-foreground/80">
         This helps us customize lessons and practice exercises for you.
       </p>
 
-      <div className="flex justify-around gap-4 mt-4">
+      <div className="flex justify-around gap-4 mt-4 text-foreground">
         {["Basic", "Intermediate", "Advanced"].map((lvl) => (
           <Button
             key={lvl}

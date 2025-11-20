@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`font-roboto antialiased`}>
         <ThemeProvider>
-          <div className="w-full h-screen flex flex-col">
+          <div className="w-full h-screen flex flex-col bg-background">
             <div className="w-full flex-1">{children}</div>
           </div>
           <Toaster position="top-right" />

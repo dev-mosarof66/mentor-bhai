@@ -29,9 +29,9 @@ const SocialButton = () => {
   return (
     <div className="w-full flex flex-col gap-2">
       <div className="w-full flex items-center justify-between gap-2">
-        <span className="w-full h-px bg-amber-600 " />
+        <span className="w-full h-px bg-secondary " />
         <p className="text-sm ">OR</p>
-        <span className="w-full h-px bg-amber-600 " />
+        <span className="w-full h-px bg-secondary " />
       </div>
       <Button
         variant="outline"

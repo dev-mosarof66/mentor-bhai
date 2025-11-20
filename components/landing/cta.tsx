@@ -10,7 +10,7 @@ const CTASection = () => {
   const router = useRouter();
   const { data } = authClient.useSession();
   return (
-    <section className="relative w-full py-28 px-4 overflow-hidden bg-white dark:bg-neutral-900 text-black dark:text-white flex items-center justify-center">
+    <section className="w-full min-h-screen flex items-center justify-center px-4 bg-linear-to-b to-background via-background from-primary/10 text-foreground">
       {/* Animated Gradient Blobs */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -40,23 +40,23 @@ const CTASection = () => {
         initial={{ opacity: 0, y: 15 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="relative max-w-3xl mx-auto text-black dark:text-white px-8 py-12 backdrop-blur-xl rounded-3xl text-center shadow-xl shadow-black/50 flex flex-col items-center gap-8"
+        className="relative max-w-3xl mx-auto text-foreground px-8 py-12 backdrop-blur-xl rounded-3xl text-center shadow-sm shadow-primary/50 flex flex-col items-center gap-4"
       >
         <motion.div
           initial={{ scale: 0.8 }}
           whileInView={{ scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="flex items-center gap-2 bg-orange-500/30 px-4 py-1.5 rounded-full text-sm text-orange-500 uppercase tracking-wide"
+          className="flex items-center gap-2 bg-primary/10 px-4 py-1.5 rounded-full text-xs sm:text-sm text-primary uppercase tracking-wide font-semibold"
         >
-          <Sparkles className="w-4 h-4" />
-          Upgrade Your English Journey
+          <Sparkles className="size-5" />
+          Upgrade Your English
         </motion.div>
 
-        <h2 className="text-4xl w-full max-w-xl  font-bold leading-snug">
+        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl w-full max-w-xl  font-bold leading-snug">
           Ready to Level Up Your English Skills?
         </h2>
 
-        <p className="text-gray-700 dark:text-gray-300 max-w-xl text-lg">
+        <p className="text-foreground/60 max-w-xl text-sm sm:text-base">
           Join thousands of learners improving their English daily with
           AI-powered mentorship, personalized lessons, and real-time practice
           tools.
@@ -67,7 +67,7 @@ const CTASection = () => {
             onClick={() =>
               data?.user ? router.push("/auth") : router.push("/auth")
             }
-            className="px-8 py-6 text-lg font-semibold bg-orange-600 hover:bg-orange-700"
+            className="px-4 py-2 text-sm font-semibold bg-primary text-background"
           >
             Start Learning Now
           </Button>

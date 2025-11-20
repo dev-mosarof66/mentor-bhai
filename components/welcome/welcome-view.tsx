@@ -72,11 +72,11 @@ export default function Onboarding() {
 
   return (
     <div className="fixed backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 text-black dark:text-gray-200 rounded-xl shadow-xl max-w-lg w-full p-6 flex flex-col gap-6 relative">
+      <div className="bg-secondary/10 text-foregorund rounded-xl shadow-xl max-w-lg w-full p-6 flex flex-col gap-6 relative">
         <div className="w-full flex justify-end absolute top-4 right-4">
           <button
             onClick={handleSkip}
-            className="text-orange-600 text-sm hover:text-orange-700 hover:underline underline-offset-1 cursor-pointer transition-all duration-300 hidden"
+            className="text-primary hover:underline underline-offset-1 cursor-pointer transition-all duration-300 hidden"
           >
             Skip
           </button>
@@ -103,11 +103,12 @@ export default function Onboarding() {
             onClick={handlePrev}
             variant={"outline"}
             disabled={currentStep === 1}
+            className="text-foreground"
           >
             Prev
           </Button>
           <p className="text-sm">Step {currentStep} of 4</p>
-          <Button onClick={handleNext}>
+          <Button onClick={handleNext} className="text-foreground">
             {currentStep === 4 ? "Get Started" : "Next"}
           </Button>
         </div>

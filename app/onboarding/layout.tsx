@@ -1,4 +1,5 @@
 "use server";
+import GradientBackground from "@/components/landing/gradient-background";
 import { connectDB } from "@/config/db";
 import { auth } from "@/lib/auth";
 import { UserInfo } from "@/model/user-info.model";
@@ -21,7 +22,6 @@ export default async function RootLayout({
     headers: await headers(),
   });
 
-
   if (!session) {
     redirect("/auth");
   }
@@ -33,8 +33,9 @@ export default async function RootLayout({
   }
 
   return (
-    <div className="w-full h-screen flex flex-col items-center justify-center">
-      {children}
+    <div className="w-full h-screen flex flex-col items-center justify-center bg-background text-foreground relative">
+      <GradientBackground />
+      <div className="w-full h-screen flex items-center justify-center absolute top-0 left-0 backdrop-blur-2xl">{children}</div>
     </div>
   );
 }

@@ -9,7 +9,7 @@ const pricingData = [
   {
     title: "Starter",
     price: "Free",
-    icon: <Sparkles className="w-8 h-8 text-orange-500" />,
+    icon: <Sparkles className="w-8 h-8 text-secondary" />,
     features: [
       "Basic Lessons",
       "AI Chat (Limited)",
@@ -17,6 +17,7 @@ const pricingData = [
       "Email Support",
     ],
     highlight: false,
+    button: "Try Free",
   },
   {
     title: "Pro",
@@ -30,11 +31,12 @@ const pricingData = [
       "Priority Support",
     ],
     highlight: true,
+    button: "Get Pro",
   },
   {
     title: "Premium",
     price: "$14.99/mo",
-    icon: <Crown className="w-8 h-8 text-orange-700" />,
+    icon: <Crown className="w-8 h-8 text-secondary" />,
     features: [
       "Everything in Pro",
       "1:1 AI Video Sessions",
@@ -43,12 +45,13 @@ const pricingData = [
       "Exclusive Early Features",
     ],
     highlight: false,
+    button: "Purchase Now",
   },
 ];
 
 const Pricing = () => {
   return (
-    <section className="w-full min-h-screen px-4 py-6 bg-white dark:bg-neutral-950">
+    <section className="w-full min-h-screen px-4 py-6">
       <div className="max-w-7xl mx-auto flex flex-col items-center gap-12 text-center">
         {/* Header */}
         <div className="w-full flex flex-col items-center justify-center gap-2">
@@ -56,7 +59,7 @@ const Pricing = () => {
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-4xl font-bold text-gray-900 dark:text-gray-100"
+            className="text-3xl md:text-4xl font-bold text-foreground"
           >
             Pricing
           </motion.h2>
@@ -65,7 +68,7 @@ const Pricing = () => {
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-gray-600 dark:text-gray-400 max-w-2xl"
+            className="text-foreground/70 max-w-2xl"
           >
             Choose a plan that fits your learning journey. Upgrade anytime.
           </motion.p>
@@ -81,22 +84,20 @@ const Pricing = () => {
               transition={{ delay: i * 0.15, duration: 0.5 }}
             >
               <Card
-                className={`w-full h-96 flex flex-col justify-between gap-6 rounded-2xl shadow-md border 
+                className={`w-full h-96 flex flex-col justify-between gap-6 rounded-2xl shadow-md bg-secondary/5 dark:bg-secondary/10 border 
                   ${
                     plan.highlight
-                      ? "border-orange-600 shadow-orange-600/20 scale-105"
-                      : "border-gray-200 dark:border-neutral-800"
+                      ? "border-secondary shadow-orange-600/20 scale-105"
+                      : "border-background/20 dark:border-neutral-800"
                   }
                 `}
               >
                 <CardHeader className="flex flex-col items-center gap-2">
-                  <CardTitle className="w-full flex items-center justify-center gap-2 text-xl font-semibold text-gray-900 dark:text-gray-100">
+                  <CardTitle className="w-full flex items-center justify-center gap-2 text-xl font-semibold  text-primary">
                     {plan.icon}
                     {plan.title}
                   </CardTitle>
-                  <p className="text-2xl font-bold text-orange-600">
-                    {plan.price}
-                  </p>
+                  <p className="text-xl font-bold">{plan.price}</p>
                 </CardHeader>
 
                 <CardContent className="flex flex-col justify-between gap-4">
@@ -104,9 +105,9 @@ const Pricing = () => {
                     {plan.features.map((f, idx) => (
                       <li
                         key={idx}
-                        className="flex items-center gap-2 text-gray-700 dark:text-gray-400"
+                        className="flex items-center gap-2 text-foreground"
                       >
-                        <CheckCircle className="w-5 h-5 text-orange-500" />
+                        <CheckCircle className="w-5 h-5 text-secondary" />
                         {f}
                       </li>
                     ))}
@@ -115,10 +116,12 @@ const Pricing = () => {
                 <div className="px-4">
                   <Button
                     className={`w-full ${
-                      plan.highlight ? "bg-orange-600 hover:bg-orange-700" : ""
-                    }`}
+                      plan.highlight
+                        ? "bg-secondary font-bold btn"
+                        : "bg-primary font-semibold"
+                    } text-background`}
                   >
-                    Get Started
+                    {plan.button}
                   </Button>
                 </div>
               </Card>

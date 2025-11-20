@@ -11,7 +11,7 @@ const AuthPage = () => {
   return (
     <section className="w-full max-w-md flex items-center justify-center">
       <BackButton />
-      <div className="w-full flex flex-col gap-4 p-4 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm bg-white dark:bg-neutral-900">
+      <div className="w-full flex flex-col gap-4 p-4 rounded-xl shadow-xl shadow-black/20 dark:shadow-primary/10">
         <Tabs defaultValue="signin" className="w-full flex flex-col gap-4">
           {/* Tabs Navigation */}
           <div className="w-full flex flex-col gap-4">
@@ -19,7 +19,7 @@ const AuthPage = () => {
               <Image src={Logo} alt="logo" width={35} height={25} />
               <p>Mentor Bhai</p>
             </div>
-            <TabsList className="grid grid-cols-2 w-full">
+            <TabsList className="grid grid-cols-2 w-full border border-primary/20 bg-transparent p-0">
               <TabsTrigger
                 value="signin"
                 className="cursor-pointer transition-all duration-300 delay-75"

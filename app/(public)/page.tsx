@@ -12,7 +12,7 @@ const LandingPage = () => {
 
   return (
     <div
-      className={`w-full min-h-screen font-roboto relative overflow-x-hidden scrollbar-hidden`}
+      className={`w-full min-h-screen font-roboto overflow-x-hidden scrollbar-hidden`}
     >
       <HeroSection />
       <FeatureSection />

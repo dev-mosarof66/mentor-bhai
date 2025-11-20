@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beautiful Card</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at center, #0b0f17, #000);
+            font-family: "Poppins", sans-serif;
+            color: white;
+        }
+
+        .card {
+            height: 260px;
+            width: 420px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #0f1215;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .card h2 {
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+            z-index: 2;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            width: 350px;
+            height: 120%;
+            background: linear-gradient(180deg, #ff005e, #00cfff, #ff005e);
+            animation: rotate 4s linear infinite;
+            filter: blur(10px);
+        }
+
+        .card::after {
+            content: "";
+            position: absolute;
+            inset: 2px;
+            background: #0b0e10;
+            border-radius: 16px;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <h2>Card</h2>
+    </div>
+
+</body>
+</html>

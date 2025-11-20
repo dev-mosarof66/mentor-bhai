@@ -13,14 +13,14 @@ const WelcomeScreen = () => {
       {/* Logo and Name */}
       <div className="flex flex-col items-center gap-1">
         <Image src={Logo} alt="Logo" width={45} height={45} />
-        <p className="text-2xl font-bold text-orange-600">Mentor Bhai</p>
+        <p className="text-2xl font-bold text-primary">Mentor Bhai</p>
       </div>
 
       {/* Greeting */}
       <div className="w-full flex flex-col gap-2 py-3">
         <h1 className="text-xl">
           Welcome,{" "}
-          <span className="text-orange-700 dark:text-orange-600">
+          <span className="text-secondary">
             {userName}!
           </span>
         </h1>

@@ -1,5 +1,4 @@
 "use client";
-import { Button } from "../ui/button";
 import ThemeSetter from "./theme";
 import { useRouter } from "next/navigation";
 import Logo from "@/public/logo.png";
@@ -8,10 +7,12 @@ import { authClient } from "@/lib/auth-client";
 import UserProfileButton from "./user-profile-button";
 import { useState } from "react";
 import { Skeleton } from "../ui/skeleton";
+import { AuthButton } from "../landing/animated-button";
 
 const Navbar = () => {
   const router = useRouter();
   const { data, isPending } = authClient.useSession();
+  const user = data?.user;
   const [showMenu, setShowMenu] = useState<boolean>(false);
 
   return (
@@ -28,7 +29,7 @@ const Navbar = () => {
               height={25}
               alt="Logo"
             />
-            <span className="text-base  sm:block text-orange-400 dark:text-orange-100">
+            <span className="text-base  sm:block text-primary">
               Mentor Bhai
             </span>
           </li>
@@ -38,26 +39,25 @@ const Navbar = () => {
             <ThemeSetter />
           </li>
           {isPending ? (
-            <li className="size-7 rounded-full border border-amber-300 bg-purple-950 animate-pulse">
+            <li className="size-7 rounded-full border border-secondary bg-primary animate-pulse">
               <Skeleton />
             </li>
           ) : (
             <li>
               {data ? (
-                <div
-                  onClick={() => setShowMenu((showMenu) => !showMenu)}
-                  className="border border-orange-600 hover:border-orange-700 active:scale-95 rounded-full cursor-pointer transition-all duration-300 delay-75"
-                >
+                <div onClick={() => setShowMenu((showMenu) => !showMenu)}>
                   <UserProfileButton showMenu={showMenu} />
                 </div>
               ) : (
-                <Button
-                  onClick={() => router.push("/auth")}
-                  className="px-2 sm:px-4 text-xs sm:text-sm text-white dark:text-black font-bold"
-                  size="sm"
+                <AuthButton
+                  onClick={() =>
+                    user ? router.push("/dashboard") : router.push("/auth")
+                  }
+                  className="w-fit py-2 px-4 cursor-pointer transition-all duration-300 delay-75"
+                  gradient="bg-linear-to-r from-black via-red-400 to-blue-500 text-sm"
                 >
-                  Get Started
-                </Button>
+                  <p className="text-xs sm:text-sm">Get Started</p>
+                </AuthButton>
               )}
             </li>
           )}

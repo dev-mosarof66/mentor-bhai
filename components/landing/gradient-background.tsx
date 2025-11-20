@@ -9,7 +9,7 @@ const GradientBackground = () => {
           width: 200,
           height: 200,
         }}
-        className="bg-orange-500/20 absolute top-20 left-0"
+        className="bg-secondary/20 absolute top-20 left-0"
       ></div>
       <div
         style={{
@@ -17,7 +17,7 @@ const GradientBackground = () => {
           width: 200,
           height: 200,
         }}
-        className="bg-orange-500/20 absolute bottom-20 right-0"
+        className="bg-secondary/20 absolute bottom-20 right-0"
       ></div>
       <div
         style={{
@@ -25,7 +25,7 @@ const GradientBackground = () => {
           width: 500,
           height: 200,
         }}
-        className="bg-orange-500/5 absolute bottom-20 right-1/2 translate-x-1/2 hidden md:block"
+        className="bg-secondary/5 absolute bottom-20 right-1/2 translate-x-1/2 hidden md:block"
       ></div>
     </div>
   );

@@ -25,7 +25,7 @@ const UserProfileButton = ({ showMenu }: { showMenu: boolean }) => {
         ) : (
           <>
             <AvatarImage src={data?.user?.image || ""} alt="User" />
-            <AvatarFallback className="bg-orange-800 text-white">
+            <AvatarFallback className="bg-secondary text-foreground">
               {data?.user?.name?.charAt(0)?.toUpperCase() || <User />}
             </AvatarFallback>
           </>
@@ -47,7 +47,7 @@ const UserProfileButton = ({ showMenu }: { showMenu: boolean }) => {
             >
               <Avatar className="size-7">
                 <AvatarImage src={data?.user?.image || ""} />
-                <AvatarFallback className="bg-orange-800 text-white">
+                <AvatarFallback className="bg-primary text-white">
                   {data?.user?.name?.charAt(0)?.toUpperCase()}
                 </AvatarFallback>
               </Avatar>
@@ -59,7 +59,7 @@ const UserProfileButton = ({ showMenu }: { showMenu: boolean }) => {
 
             <Button
               variant="ghost"
-              className="w-full justify-start gap-2 text-orange-600 hover:bg-red-100 dark:hover:bg-orange-950 dark:text-orange-500"
+              className="w-full justify-start gap-2 text-primary hover:text-secondary active:scale-95"
               onClick={handleLogout}
             >
               <LogOut className="size-4" />

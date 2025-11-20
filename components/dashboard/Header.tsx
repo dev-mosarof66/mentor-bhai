@@ -16,7 +16,7 @@ const Header = () => {
           <ThemeSetter />
         </li>
         {isPending ? (
-          <li className="size-7 rounded-full border border-amber-300 bg-purple-950 animate-pulse">
+          <li className="size-7 rounded-full border border-secondary animate-pulse">
             <Skeleton />
           </li>
         ) : (
@@ -24,7 +24,7 @@ const Header = () => {
             {data && (
               <div
                 onClick={() => setShowMenu((showMenu) => !showMenu)}
-                className="border border-orange-600 hover:border-orange-700 active:scale-95 rounded-full cursor-pointer transition-all duration-300 delay-75"
+                className="border border-secondary hover:border-primary active:scale-95 rounded-full cursor-pointer transition-all duration-300 delay-75"
               >
                 <UserProfileButton showMenu={showMenu} />
               </div>

@@ -12,7 +12,7 @@ const ThemeSetter = () => {
   return (
     <div
       onClick={toggleTheme}
-      className="p-2 rounded-full transition-all bg-orange-100 dark:bg-orange-100/10 hover:bg-orange-200 dark:hover:bg-orange-100/20 text-orange-800 dark:text-orange-300 cursor-pointer duration-300"
+      className="p-2 rounded-full transition-all bg-primary/10 hover:bg-primary/20 text-foreground cursor-pointer duration-300"
       aria-label="Toggle theme"
     >
       {theme === "dark" ? (

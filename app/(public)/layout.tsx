@@ -30,10 +30,13 @@ export default async function RootLayout({
   }
 
   return (
-    <div className="w-full h-screen flex flex-col">
+    <div className="w-full h-screen flex flex-col bg-background text-foreground">
       <Navbar />
-      <div className="w-full flex-1">{children}</div>
+      <div className="w-full flex-1  bg-background text-foreground">
+        {children}
+      </div>
       <Footer />
+      <p className="bg-background text-center py-2">&copy; {new Date().getFullYear()} AI Mentor. All rights reserved.</p>
     </div>
   );
 }

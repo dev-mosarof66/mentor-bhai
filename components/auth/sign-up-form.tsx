@@ -88,7 +88,7 @@ const SignUpForm = () => {
               <FormControl>
                 <Input placeholder="John Doe" className="mt-1" {...field} />
               </FormControl>
-              <FormMessage className="text-red-500 text-sm" />
+              <FormMessage className="text-primary text-sm" />
             </FormItem>
           )}
         />
@@ -108,7 +108,7 @@ const SignUpForm = () => {
                   {...field}
                 />
               </FormControl>
-              <FormMessage className="text-red-500 text-sm" />
+              <FormMessage className="text-primary text-sm" />
             </FormItem>
           )}
         />
@@ -143,14 +143,14 @@ const SignUpForm = () => {
                   </button>
                 </div>
               </FormControl>
-              <FormMessage className="text-red-500 text-sm" />
+              <FormMessage className="text-primary text-sm" />
             </FormItem>
           )}
         />
 
         <Button
           disabled={loading}
-          className="w-full bg-orange-600 hover:bg-orange-700"
+          className="w-full "
         >
           {loading ? <Spinner /> : "Create Account"}
         </Button>

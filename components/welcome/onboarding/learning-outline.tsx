@@ -9,10 +9,10 @@ const LearningOutline = ({
 }) => {
   return (
     <div className="w-full flex flex-col gap-6">
-      <h2 className="text-2xl font-semibold text-orange-600 text-center">
+      <h2 className="text-2xl font-semibold text-primary text-center">
         Choose Your Learning Path
       </h2>
-      <p className="text-gray-600 dark:text-gray-300">
+      <p className="text-foreground/80">
         Select whether you want to focus on IELTS preparation or Academic
         English.
       </p>

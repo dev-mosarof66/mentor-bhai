@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { motion } from "framer-motion";
 import Image from "next/image";
 import Logo from "@/public/logo.png";
 import { useState } from "react";
@@ -37,7 +36,7 @@ const FooterSection = () => {
     }
   };
   return (
-    <footer className="w-full bg-white dark:bg-black text-black dark:text-white py-10 px-6 font-roboto">
+    <footer className="w-full pb-20 px-4 bg-linear-to-b from-background via-background to-primary/10 text-foreground">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Logo & Description */}
         <div className="flex flex-col gap-4">
@@ -51,7 +50,7 @@ const FooterSection = () => {
             />
             <span>Mentor Bhai</span>
           </div>
-          <p className="text-gray-700 dark:text-gray-400">
+          <p className="text-foreground">
             Personalized AI-powered English mentorship to help you speak, write,
             and learn effectively.
           </p>
@@ -59,15 +58,13 @@ const FooterSection = () => {
 
         {/* Services */}
         <div>
-          <h3 className="font-semibold mb-4 text-gray-500 dark:text-gray-300">
-            Services
-          </h3>
-          <ul className="flex flex-col gap-2 text-gray-400">
+          <h3 className="font-semibold mb-4 text-secondary">Services</h3>
+          <ul className="flex flex-col gap-2 text-foreground/70">
             {services.map((service, idx) => (
               <li key={idx}>
                 <a
                   href={service.href}
-                  className="hover:text-orange-500 transition-colors"
+                  className="hover:text-primary transition-colors"
                 >
                   {service.name}
                 </a>
@@ -78,15 +75,14 @@ const FooterSection = () => {
 
         {/* Contact */}
         <div>
-          <h3 className="font-semibold mb-4 text-gray-500 dark:text-gray-300">
-            Contact
-          </h3>
-          <ul className="flex flex-col gap-2 text-gray-400">
+          <h3 className="font-semibold mb-4 text-secondary">Contact</h3>
+          <ul className="flex flex-col gap-2 text-foreground/70">
+            {" "}
             {contact.map((item, idx) => (
               <li key={idx}>
                 <a
                   href={item.href}
-                  className="hover:text-orange-500 transition-colors"
+                  className="hover:text-primary transition-colors"
                 >
                   {item.name}
                 </a>
@@ -97,40 +93,28 @@ const FooterSection = () => {
 
         {/* Newsletter / Email Subscription */}
         <div className="flex flex-col gap-2">
-          <h3 className="font-semibold text-gray-500 dark:text-gray-300">
-            Subscribe
-          </h3>
-          <p className="text-gray-400">
+          <h3 className="font-semibold text-secondary"> Subscribe</h3>
+          <p className="text-foreground/80">
             Get updates and tips straight to your inbox.
           </p>
-          <div className="w-full flex md:flex-col gap-2 md:gap-4">
+          <div className="w-full flex flex-col sm:flex-row md:flex-col gap-3 md:gap-4">
             <Input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Your email"
-              className="w-96 md:w-full  text-white border-neutral-700 py-3"
+              className="w-full  md:w-full  text-white border-neutral-700 py-3"
             />
             <Button
               onClick={handleSubscribe}
               disabled={loading}
-              className="w-32 md:w-full bg-orange-600 hover:bg-orange-700"
+              className="w-full sm:w-fit md:w-full bg-secondary hover:bg-secondary/80 text-background font-semibold"
             >
               {loading ? <Spinner /> : "Subscribe"}
             </Button>
           </div>
         </div>
       </div>
-
-      {/* Bottom Footer */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="mt-12 text-center text-gray-500 text-sm"
-      >
-        &copy; {new Date().getFullYear()} AI Mentor. All rights reserved.
-      </motion.div>
     </footer>
   );
 };

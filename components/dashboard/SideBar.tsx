@@ -36,11 +36,11 @@ const SideBar = () => {
 
   return (
     <>
-      <aside className="hidden md:flex flex-col justify-between w-60 lg:w-72 xl:w-80 h-screen border-r bg-white dark:bg-gray-950 px-4 py-6 shadow-sm">
+      <aside className="hidden md:flex flex-col justify-between w-60 md:w-72 xl:w-80 h-screen border-r bg-background px-4 py-6 shadow-sm">
         <div>
           <h2 className="text-xl font-bold mb-8">User Panel</h2>
 
-          <nav className="w-full flex flex-col gap-4 text-gray-700 dark:text-gray-300">
+          <nav className="w-full flex flex-col gap-4 text-foreground">
             {navItems.map((item) => {
               const Icon = item.icon;
               return (
@@ -51,8 +51,8 @@ const SideBar = () => {
                   className={cn(
                     "flex items-center gap-3 px-4 py-2 rounded-lg text-sm font-medium hover:bg-muted transition",
                     active === item.href
-                      ? "bg-orange-600 text-white hover:bg-orange-700"
-                      : "text-gray-700 dark:text-gray-300"
+                      ? "bg-secondary/50 text-foreground hover:bg-secondary"
+                      : "text-foreground"
                   )}
                 >
                   <Icon size={20} />
@@ -77,7 +77,7 @@ const SideBar = () => {
       </aside>
 
       {/* bottom bar  */}
-      <div className="md:hidden fixed bottom-0 w-full  bg-white dark:bg-gray-950 border-t shadow-lg z-50">
+      <div className="md:hidden fixed bottom-0 w-full bg-background border-t border-secondary/50 rounded-t-2xl shadow-lg z-50">
         <div className="flex items-center justify-around py-2">
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -99,8 +99,8 @@ const SideBar = () => {
                     className={cn(
                       "transition",
                       isActive
-                        ? "text-orange-600"
-                        : "text-gray-700 dark:text-gray-300"
+                        ? "text-secondary"
+                        : "text-foreground"
                     )}
                   />
                 </motion.div>
@@ -108,8 +108,8 @@ const SideBar = () => {
                   className={cn(
                     "text-xs",
                     isActive
-                      ? "text-orange-600 font-medium"
-                      : "text-gray-700 dark:text-gray-300"
+                      ? "text-secondary"
+                      : "text-foreground"
                   )}
                 >
                   {item.name}

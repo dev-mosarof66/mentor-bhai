@@ -135,7 +135,7 @@ const SignInForm = () => {
                 <FormMessage className="text-xs" />
                 <span
                   onClick={() => router.push("/forget-password")}
-                  className="absolute right-0 top-0.5 text-xs text-orange-600 cursor-pointer hover:underline"
+                  className="absolute right-0 top-0.5 text-xs text-primary cursor-pointer hover:underline"
                 >
                   Forgot password?
                 </span>
@@ -167,7 +167,7 @@ const SignInForm = () => {
         <Button
           disabled={loading}
           type="submit"
-          className="w-full bg-orange-600 hover:bg-orange-700 my-2"
+          className="w-full my-2"
         >
           {loading ? <Spinner /> : "Sign In"}
         </Button>
