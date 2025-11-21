@@ -60,8 +60,8 @@ export const pricingData: pricingDataProps[] = [
 
 const Pricing = () => {
   return (
-    <section className="w-full min-h-screen px-4 py-6">
-      <div className="max-w-7xl mx-auto flex flex-col items-center gap-12 text-center">
+    <section className="w-full min-h-screen flex items-center justify-center px-4 py-6">
+      <div className="w-full max-w-7xl mx-auto flex flex-col items-center gap-12 text-center">
         {/* Header */}
         <div className="w-full flex flex-col items-center justify-center gap-2">
           <motion.h2

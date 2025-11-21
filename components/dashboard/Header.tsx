@@ -5,7 +5,7 @@ import { Skeleton } from "../ui/skeleton";
 import UserProfileButton from "../common/user-profile-button";
 import { useState } from "react";
 
-const Header = () => {
+const Header = ({ setLoading }: { setLoading: (loading: boolean) => void }) => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const { data, isPending } = authClient.useSession();
 
@@ -26,7 +26,10 @@ const Header = () => {
                 onClick={() => setShowMenu((showMenu) => !showMenu)}
                 className="border border-secondary hover:border-primary active:scale-95 rounded-full cursor-pointer transition-all duration-300 delay-75"
               >
-                <UserProfileButton showMenu={showMenu} />
+                <UserProfileButton
+                  showMenu={showMenu}
+                  setLoading={() => setLoading(true)}
+                />
               </div>
             )}
           </li>

@@ -9,6 +9,7 @@ import UserEnglishLevel from "./onboarding/current-level";
 import OnboardingComplete from "./onboarding/complete";
 import axios from "axios";
 import { authClient } from "@/lib/auth-client";
+import { Spinner } from "../ui/spinner";
 
 export default function Onboarding() {
   const { data } = authClient.useSession();
@@ -16,6 +17,7 @@ export default function Onboarding() {
   const router = useRouter();
   const [level, setLevel] = useState<string | null>("basic");
   const [preference, setPreference] = useState<string | null>("Academic");
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleSubmit = async () => {
     try {
@@ -26,20 +28,17 @@ export default function Onboarding() {
 
       const finalLevel = level ?? "basic";
       const finalPreference = preference ?? "academic";
-
+      setLoading(false);
       const res = await axios.post(
         `/api/user-info?id=${encodeURIComponent(data.session.userId)}`,
         {
           level: finalLevel.toLowerCase(),
           preference: finalPreference.toLowerCase(),
-        },
-        {
-          timeout: 8000,
         }
       );
 
       console.log("Onboarding Saved:", res.data);
-
+      setLoading(false);
       router.push("/dashboard");
     } catch (error: any) {
       console.log("Onboarding Error:", error);
@@ -109,7 +108,11 @@ export default function Onboarding() {
           </Button>
           <p className="text-sm">Step {currentStep} of 4</p>
           <Button onClick={handleNext} className="text-foreground">
-            {currentStep === 4 ? "Get Started" : "Next"}
+            {currentStep === 4 ? (
+              <>{loading ? <Spinner /> : "Get Started"}</>
+            ) : (
+              "Next"
+            )}
           </Button>
         </div>
       </div>

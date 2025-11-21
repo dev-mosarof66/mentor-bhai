@@ -10,7 +10,7 @@ const CTASection = () => {
   const router = useRouter();
   const { data } = authClient.useSession();
   return (
-    <section className="w-full min-h-screen flex items-center justify-center px-4 bg-linear-to-b to-background via-background from-primary/10 text-foreground">
+    <section className="w-full md:h-screen flex items-center justify-center px-4 pb-24 md:pb-0 bg-linear-to-b to-background via-background from-primary/10 text-foreground">
       {/* Animated Gradient Blobs */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -67,7 +67,7 @@ const CTASection = () => {
             onClick={() =>
               data?.user ? router.push("/auth") : router.push("/auth")
             }
-            className="px-4 py-2 text-sm font-semibold bg-primary text-background"
+            className="px-4 py-2 text-sm font-semibold bg-primary text-foreground"
           >
             Start Learning Now
           </Button>

@@ -3,8 +3,7 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { fetchUserInfo } from "@/app/onboarding/layout";
-import SideBar from "@/components/dashboard/SideBar";
-import Header from "@/components/dashboard/Header";
+import RootLayoutClient from "./layout-client";
 
 export default async function RootLayout({
   children,
@@ -23,15 +22,5 @@ export default async function RootLayout({
 
   console.log(userInfo.userId.toString());
 
-  return (
-    <div className="w-full h-screen bg-background text-foreground">
-      <div className="w-full h-full flex gap-4">
-        <SideBar />
-        <div className="w-full h-full flex flex-col gap-2 overflow-y-scroll scrollbar-hidden pb-20 sm:pb-0">
-          <Header />
-          {children}
-        </div>
-      </div>
-    </div>
-  );
+  return <RootLayoutClient>{children} </RootLayoutClient>;
 }

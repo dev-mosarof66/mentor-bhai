@@ -7,13 +7,28 @@ import { LogOut, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
-const UserProfileButton = ({ showMenu }: { showMenu: boolean }) => {
+const UserProfileButton = ({
+  showMenu,
+  setLoading,
+}: {
+  showMenu: boolean;
+  setLoading: (loading: boolean) => void;
+}) => {
   const router = useRouter();
   const { data, isPending } = authClient.useSession();
 
   const handleLogout = async () => {
-    await authClient.signOut();
-    window.location.reload();
+    console.log("hi")
+    console.log(setLoading)
+    setLoading(true);
+    await authClient.signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          router.push("/");
+          setLoading(false);
+        },
+      },
+    });
   };
 
   return (
