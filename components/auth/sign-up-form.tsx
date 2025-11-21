@@ -53,6 +53,7 @@ const SignUpForm = () => {
         name: data.name,
         email: data.email,
         password: data.password,
+        image: '',
       },
       {
         onSuccess: ({ data }) => {

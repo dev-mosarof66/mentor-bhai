@@ -70,7 +70,7 @@ const SignInForm = () => {
                   setLoading(false);
                 },
                 onError: () => {
-                  router.push("/error");
+                  router.push("/not-found");
                 },
               }
             );

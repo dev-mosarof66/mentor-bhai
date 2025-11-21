@@ -1,5 +1,9 @@
+import { connectDB } from "@/config/db";
 import { auth } from "@/lib/auth";
 import { NextRequest, NextResponse } from "next/server";
+
+
+connectDB();
 
 export async function GET(req: NextRequest) {
     try {
@@ -23,6 +27,6 @@ export async function GET(req: NextRequest) {
     } catch (error) {
         console.log("Internal server while verifying email:", error);
         const url = new URL(req.url);
-        return NextResponse.redirect(`${url.origin}/error`);
+        return NextResponse.redirect(`${url.origin}/not-found`);
     }
 }
