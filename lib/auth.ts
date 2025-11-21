@@ -1,9 +1,10 @@
 import { sendEmail } from "@/utils/send-email";
-import { betterAuth } from "better-auth";
+import { APIError, betterAuth } from "better-auth";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { MongoClient } from 'mongodb'
 import ejs from "ejs";
 import path from "path";
+import { nextCookies } from "better-auth/next-js";
 
 
 const client = new MongoClient(`${process.env.MONGODB_URI!}/mentor-bhai`);
@@ -32,6 +33,12 @@ export const auth = betterAuth({
                 html,
             })
         },
+    },
+    session: {
+        cookieCache: {
+            enabled: true,
+            maxAge: 60 //1 minute
+        }
     },
     socialProviders: {
         google: {
@@ -62,5 +69,26 @@ export const auth = betterAuth({
         },
 
     },
+    plugins: [
 
+        nextCookies()
+    ],
+    databaseHooks: {
+        user: {
+            create: {
+                before: async (user) => {
+
+                    if (user.isAgreedToTerms === false) {
+                        throw new APIError('BAD_REQUEST', {
+                            message: "You must need to be accept all TOS to signup."
+                        })
+                    }
+                    return {
+                        data: user
+                    }
+                }
+            }
+        }
+    },
+    
 });

@@ -18,11 +18,15 @@ import {
 import { toast } from "sonner";
 import { Spinner } from "../ui/spinner";
 import { Eye, EyeOff } from "lucide-react";
+import { Checkbox } from "../ui/checkbox";
 
 const signUpSchema = z.object({
   name: z.string().min(6, "Full name must be at least 6 characters"),
   email: z.email("Invalid email address"),
   password: z.string().min(8, "Password must be at least 8 characters"),
+  isAgreedToTerms: z.boolean().refine((val) => val === true, {
+    message: "You must agree to the Terms and Conditions",
+  }),
 });
 
 type SignUpSchema = z.infer<typeof signUpSchema>;
@@ -38,6 +42,7 @@ const SignUpForm = () => {
       name: "",
       email: "",
       password: "",
+      isAgreedToTerms: false,
     },
   });
 
@@ -61,8 +66,12 @@ const SignUpForm = () => {
                 router.push(`/verify-email?message=check-your-mailbox`);
                 setLoading(false);
               },
-              onError: () => {
-                router.push("/error");
+              onError: ({ error }) => {
+                if (error.status === 500) {
+                  router.push("/not-found");
+                } else {
+                  toast.error(error.message);
+                }
               },
             }
           );
@@ -88,7 +97,7 @@ const SignUpForm = () => {
               <FormControl>
                 <Input placeholder="John Doe" className="mt-1" {...field} />
               </FormControl>
-              <FormMessage className="text-primary text-sm" />
+              <FormMessage className=" text-sm" />
             </FormItem>
           )}
         />
@@ -108,7 +117,7 @@ const SignUpForm = () => {
                   {...field}
                 />
               </FormControl>
-              <FormMessage className="text-primary text-sm" />
+              <FormMessage className="text-sm" />
             </FormItem>
           )}
         />
@@ -143,15 +152,35 @@ const SignUpForm = () => {
                   </button>
                 </div>
               </FormControl>
-              <FormMessage className="text-primary text-sm" />
+              <FormMessage className="text-sm" />
             </FormItem>
           )}
         />
 
-        <Button
-          disabled={loading}
-          className="w-full "
-        >
+        <FormField
+          control={form.control}
+          name="isAgreedToTerms"
+          render={({ field }) => (
+            <FormItem className="flex flex-col gap-2">
+              <div className="w-full flex gap-2">
+                <FormControl>
+                  <Checkbox
+                    id="rememberMe"
+                    checked={field.value}
+                    className="cursor-pointer border border-foreground/70"
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <FormLabel htmlFor="rememberMe" className="text-sm">
+                  By accessing this website, you agree to these Terms and
+                  Conditions.
+                </FormLabel>
+              </div>
+            </FormItem>
+          )}
+        />
+
+        <Button disabled={loading} className="w-full text-foreground ">
           {loading ? <Spinner /> : "Create Account"}
         </Button>
       </form>

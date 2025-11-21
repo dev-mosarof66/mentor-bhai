@@ -148,27 +148,23 @@ const SignInForm = () => {
           control={form.control}
           name="rememberMe"
           render={({ field }) => (
-            <FormItem className="flex items-center gap-2 cursor-pointer">
+            <FormItem className="flex items-center gap-2">
               <FormControl>
                 <Checkbox
                   id="rememberMe"
                   checked={field.value}
-                  className="cursor-pointer"
+                  className="cursor-pointer border border-foreground/70"
                   onCheckedChange={field.onChange}
                 />
               </FormControl>
-              <FormLabel htmlFor="rememberMe">Remember Me</FormLabel>
+              <FormLabel htmlFor="rememberMe" className="text-sm">Remember Me</FormLabel>
               <FormMessage />
             </FormItem>
           )}
         />
 
         {/* SUBMIT BUTTON */}
-        <Button
-          disabled={loading}
-          type="submit"
-          className="w-full my-2"
-        >
+        <Button disabled={loading} type="submit" className="w-full my-2 text-foreground">
           {loading ? <Spinner /> : "Sign In"}
         </Button>
       </form>
