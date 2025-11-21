@@ -18,8 +18,7 @@ const UserProfileButton = ({
   const { data, isPending } = authClient.useSession();
 
   const handleLogout = async () => {
-    console.log("hi")
-    console.log(setLoading)
+
     setLoading(true);
     await authClient.signOut({
       fetchOptions: {

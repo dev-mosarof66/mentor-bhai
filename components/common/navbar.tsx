@@ -46,7 +46,10 @@ const Navbar = () => {
             <li>
               {data ? (
                 <div onClick={() => setShowMenu((showMenu) => !showMenu)}>
-                  <UserProfileButton showMenu={showMenu} />
+                  <UserProfileButton
+                    showMenu={showMenu}
+                    setLoading={() => {}}
+                  />
                 </div>
               ) : (
                 <AuthButton
