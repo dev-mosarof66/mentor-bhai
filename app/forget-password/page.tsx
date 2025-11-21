@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/form";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const ForgetPasswordSchema = z.object({
   email: z.email("Email address is required."),
@@ -44,13 +45,16 @@ export default function ForgetPassword() {
     authClient.requestPasswordReset(
       {
         email: data.email,
-        redirectTo:"/reset-password"
+        redirectTo: "/reset-password",
       },
       {
         onSuccess: () => {
           setLoading(false);
           rotuer.push("/reset-password?message=check-your-mailbox");
         },
+        onError: ({ error }) => {
+          toast.error(error.message);
+          setLoading(false);        },
       }
     );
   };

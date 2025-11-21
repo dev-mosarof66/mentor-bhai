@@ -1,121 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Email Verification</title>
-
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: #f6f7f9;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    .container {
-      max-width: 550px;
-      margin: 40px auto;
-      background: white;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    .header {
-      background: #ff7a29;
-      color: white;
-      text-align: center;
-      padding: 25px 20px;
-    }
-
-    .header h1 {
-      margin: 0;
-      font-size: 22px;
-      font-weight: bold;
-    }
-
-    .content {
-      padding: 30px 25px;
-      color: #333;
-      font-size: 15px;
-      line-height: 1.6;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 12px 25px;
-      background: #ff7a29;
-      color: white;
-      text-decoration: none;
-      border-radius: 6px;
-      font-weight: bold;
-      font-size: 16px;
-      margin-top: 10px;
-    }
-
-    .expiry-text {
-      margin-top: 15px;
-      font-size: 14px;
-      color: #ff7a29;
-      font-weight: bold;
-    }
-
-    .link-text {
-      margin-top: 20px;
-      font-size: 14px;
-      color: #555;
-      word-wrap: break-word;
-    }
-
-    .footer {
-      text-align: center;
-      padding: 15px;
-      font-size: 12px;
-      color: #888;
-    }
-
-    @media (max-width: 600px) {
-      .container { margin: 10px; }
-      .content { padding: 20px; }
-    }
-  </style>
 </head>
 
-<body>
-  <div class="container">
+<body style="margin:0; padding:0; background:#f6f7f9; font-family:Arial, Helvetica, sans-serif;">
 
-    <div class="header">
-      <h1>Verify Your Email</h1>
+  <div style="max-width:550px; margin:40px auto; background:#ffffff; border-radius:10px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+
+    <!-- Header -->
+    <div style="background:#6403cc; color:#ffffff; text-align:center; padding:25px 20px;">
+      <h1 style="margin:0; font-size:22px; font-weight:bold;">Verify Your Email</h1>
     </div>
 
-    <div class="content">
+    <!-- Content -->
+    <div style="padding:30px 25px; color:#333333; font-size:15px; line-height:1.6;">
       <p>Hi <%= name %>,</p>
 
-      <p>
-        Thanks for signing up! Please verify your email address by clicking the button below.
+      <p>Thanks for signing up! Please verify your email address by clicking the button below:</p>
+
+      <p style="text-align:center; margin:20px 0;">
+        <a href="<%= link %>" style="display:inline-block; padding:12px 25px; background:#6403cc; color:#ffffff; text-decoration:none; border-radius:6px; font-weight:bold; font-size:16px;">
+          Verify Email
+        </a>
       </p>
 
-      <a href="<%= link %>" class="btn">Verify Email</a>
-
-      <p class="expiry-text">
+      <p style="margin-top:15px; font-size:14px; color:#6403cc; font-weight:bold;">
         ⚠️ This verification link will expire in <strong>2 minutes</strong>.
       </p>
 
-      <div class="link-text">
+      <div style="margin-top:20px; font-size:14px; color:#555555; word-wrap:break-word;">
         <p>If the button doesn't work, copy and paste this link into your browser:</p>
-        <a href="<%= link %>" style="color:#ff7a29;"><%= link %></a>
+        <a href="<%= link %>" style="color:#6403cc; text-decoration:none;"><%= link %></a>
       </div>
 
-      <p>
-        If you didn’t create this account, you may safely ignore this email.
-      </p>
+      <p style="margin-top:20px;">If you didn’t create this account, you may safely ignore this email.</p>
     </div>
 
-    <div class="footer">
-      © <%= new Date().getFullYear() %> Your Company Name — All rights reserved.
+    <!-- Footer -->
+    <div style="text-align:center; padding:15px; font-size:12px; color:#888888;">
+      © <%= new Date().getFullYear() %> Mentor Bhai — All rights reserved.
     </div>
 
   </div>
+
 </body>
 </html>
