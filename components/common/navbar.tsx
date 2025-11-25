@@ -57,7 +57,7 @@ const Navbar = () => {
                     user ? router.push("/dashboard") : router.push("/auth")
                   }
                   className="w-fit py-2 px-4 cursor-pointer transition-all duration-300 delay-75"
-                  gradient="bg-linear-to-r from-black via-red-400 to-blue-500 text-sm"
+                  gradient="bg-linear-to-r from-red-700"
                 >
                   <p className="text-xs sm:text-sm">Get Started</p>
                 </AuthButton>

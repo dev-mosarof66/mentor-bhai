@@ -12,7 +12,7 @@ interface AuthButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export const AuthButton = ({
   className,
-  gradient = "bg-linear-to-r from-blue-500 via-red-400 to-blue-500",
+  gradient = "bg-linear-to-r from-amber-700",
   children,
   ...props
 }: AuthButtonProps) => {
@@ -20,7 +20,7 @@ export const AuthButton = ({
     <button
       {...props}
       className={cn(
-        "relative w-full rounded-md overflow-hidden",
+        "relative w-full rounded-md overflow-hidden mix-blend-color-dodge",
         "flex items-center justify-center",
         "transition-transform duration-300 active:scale-[0.97]",
         className
@@ -28,10 +28,7 @@ export const AuthButton = ({
     >
       {/* Rotating gradient background */}
       <motion.div
-        className={cn(
-          gradient,
-          "absolute inset-0 blur-xl scale-[1.5]" // ensures full coverage
-        )}
+        className={cn("absolute inset-0 blur-xl scale-[1.5] ", gradient)}
         animate={{ rotate: 360 }}
         transition={{
           repeat: Infinity,
@@ -41,7 +38,7 @@ export const AuthButton = ({
       />
 
       {/* Inner mask */}
-      <div className="absolute inset-0.5 bg-background/80 rounded-md" />
+      <div className="absolute inset-0.5 bg-background rounded-md" />
       {/* Content */}
       <span className="relative z-10 text-foreground font-medium">
         {children}

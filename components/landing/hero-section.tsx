@@ -20,10 +20,10 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="flex items-center gap-2 px-3 py-1.5 bg-primary/15 text-foreground font-semibold rounded-full transition-all"
+          className="flex items-center gap-2 px-3 py-1.5 bg-primary/10 text-foreground font-semibold rounded-full transition-all"
         >
           <FaSuperpowers className="text-2xl text-secondary" />
-          <Badge className="bg-transparent text-sm text-foreground font-semibold">
+          <Badge className="bg-transparent text-xs sm:text-sm text-foreground font-semibold">
             AI-Powered Mentorship Platform
           </Badge>
         </motion.div>
