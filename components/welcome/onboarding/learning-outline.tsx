@@ -17,18 +17,25 @@ const LearningOutline = ({
         English.
       </p>
 
-      <div className="flex items-center gap-4">
+      <div className="flex flex-wrap items-center justify-center gap-4">
+        {/* IELTS Button */}
         <Button
           variant={preference === "IELTS" ? "default" : "outline"}
           onClick={() => setPreference("IELTS")}
-          className="relative"
+          className="relative flex items-center gap-2 px-3"
+          disabled
         >
           IELTS
-          <span className="">upcoming</span>
+          <span className="text-xs bg-yellow-500 text-white px-2 py-0.5 rounded-full">
+            Upcoming
+          </span>
         </Button>
+
+        {/* Academic English Button */}
         <Button
           variant={preference === "Academic" ? "default" : "outline"}
           onClick={() => setPreference("Academic")}
+          className="px-3"
         >
           Academic English
         </Button>

@@ -13,7 +13,7 @@ import { Spinner } from "../ui/spinner";
 
 const navItems = [
   { name: "Home", href: "/dashboard", icon: MdHome },
-  { name: "Your Learning", href: "/learning", icon: BookOpen },
+  { name: "Practice", href: "/learning", icon: BookOpen },
   { name: "Settings", href: "/settings", icon: Settings },
 ];
 

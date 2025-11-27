@@ -12,7 +12,6 @@ import { AuthButton } from "../landing/animated-button";
 const Navbar = () => {
   const router = useRouter();
   const { data, isPending } = authClient.useSession();
-  const user = data?.user;
   const [showMenu, setShowMenu] = useState<boolean>(false);
 
   return (
@@ -53,11 +52,9 @@ const Navbar = () => {
                 </div>
               ) : (
                 <AuthButton
-                  onClick={() =>
-                    user ? router.push("/dashboard") : router.push("/auth")
-                  }
+                  onClick={() => router.push("/auth")}
                   className="w-fit py-2 px-4 cursor-pointer transition-all duration-300 delay-75"
-                  gradient="bg-linear-to-r from-red-700"
+                  gradient="bg-linear-to-b from-blue-400 to-transparent"
                 >
                   <p className="text-xs sm:text-sm">Get Started</p>
                 </AuthButton>
