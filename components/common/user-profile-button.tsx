@@ -3,7 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Skeleton } from "@/components/ui/skeleton";
 import { authClient } from "@/lib/auth-client";
 import { AnimatePresence, motion } from "framer-motion";
-import { LogOut, User } from "lucide-react";
+import { LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
@@ -18,7 +18,6 @@ const UserProfileButton = ({
   const { data, isPending } = authClient.useSession();
 
   const handleLogout = async () => {
-
     setLoading(true);
     await authClient.signOut({
       fetchOptions: {
@@ -38,10 +37,12 @@ const UserProfileButton = ({
           <Skeleton className="size-[26px]  sm:size-7 bg-black rounded-full" />
         ) : (
           <>
-            <AvatarImage src={data?.user?.image || ""} alt="User" />
-            <AvatarFallback className="bg-secondary text-foreground">
-              {data?.user?.name?.charAt(0)?.toUpperCase() || <User />}
-            </AvatarFallback>
+            <Avatar className="size-7">
+              <AvatarImage src={data?.user?.image || ""} />
+              <AvatarFallback className="bg-primary text-white">
+                {data?.user?.name?.charAt(0)?.toUpperCase()}
+              </AvatarFallback>
+            </Avatar>
           </>
         )}
       </Avatar>

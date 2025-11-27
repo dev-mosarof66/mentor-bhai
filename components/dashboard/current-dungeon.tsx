@@ -1,18 +1,20 @@
 "use client";
-import { dummyDungeon } from "@/public/dummy";
+import { dummyDungeon } from "@/public/dungeon";
 import { Card, CardContent, CardHeader } from "../ui/card";
 import { FaPlay } from "react-icons/fa6";
+import { useRouter } from "next/navigation";
 
 const CurrentDungeon = () => {
-  const dungeon = dummyDungeon[0];
+  const dungeon = dummyDungeon;
+  const router = useRouter();
 
   const sections = [
-    { name: "Vocabulary", count: dungeon.vocabo.length },
-    { name: "Phrasal Verb", count: dungeon.phrasalVerb.length },
-    { name: "Writing", count: dungeon.writing.length },
-    { name: "Reading", count: dungeon.reading.length },
-    { name: "Listening", count: dungeon.listening.length },
-    { name: "Speaking", count: dungeon.speaking.length },
+    { name: "Vocabulary", count: dungeon.dungeon.vocabulary.length },
+    { name: "Phrasal Verb", count: dungeon.dungeon.phrasal_verbs.length },
+    { name: "Writing", count: 0 },
+    { name: "Reading", count: 1 },
+    { name: "Listening", count: 0 },
+    { name: "Speaking", count: 0 },
   ];
 
   return (
@@ -20,14 +22,18 @@ const CurrentDungeon = () => {
       <div className="p-3 sm:p-4 w-full flex flex-col gap-2">
         {/* Header */}
         <CardHeader className="p-0">
-          <div className="w-full flex items-center justify-between">
-            <p className="text-lg font-bold truncate">{dungeon.id}</p>
+          <div className="w-full flex items-center justify-between  text-background">
+            <p className="text-lg font-bold truncate">
+              {dungeon.dungeon_title}
+            </p>
             <div className="flex items-center gap-4">
-              <p className="font-semibold">XP : {dungeon.points}</p>
               <button
                 title="Start"
                 type="button"
-                className="border-2 border-amber-400 rounded-full p-1 bg-transparent text-foreground hover:bg-amber-700 cursor-pointer hover:text-white active:scale-95 transition-all duration-300 delay-75"
+                onClick={() => {
+                  router.push("/dungeon/current");
+                }}
+                className="border-2 border-amber-400 rounded-full p-1 bg-transparent text-background hover:bg-amber-700 cursor-pointer hover:text-white active:scale-95 transition-all duration-300 delay-75"
               >
                 <FaPlay />
               </button>
@@ -37,19 +43,15 @@ const CurrentDungeon = () => {
 
         {/* Info */}
         <CardContent className="p-0">
-          <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-2">
-            <div className="w-full flex flex-col gap-4">
+          <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-2 text-background">
+            <div className="w-full flex flex-col gap-2">
               <div className="flex items-center gap-6 font-bold">
-                <p className="text-sm font-bold">Level: {dungeon.level}</p>
-                <p className="text-sm font-bold">
-                  Duration: {dungeon.duration}
-                </p>
+                <p className="text-sm font-bold">Level: {dungeon.rank}</p>
+                <p className="text-sm font-bold">Duration: {dungeon.duration}</p>
               </div>
               <div className="hidden sm:block">
                 <p className="text-sm font-medium text-white font-truncate">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Adipisci iure quo cum? Odio quasi ut enim architecto expedita
-                  magnam praesentium.
+                  {dungeon.description}
                 </p>
               </div>
             </div>

@@ -63,7 +63,7 @@ const StatsCard = ({
           {/* Stats */}
           <div className="flex flex-col gap-2 text-sm">
             <p className="font-medium">
-              Words Learned: <span className="text-primary">{learned}</span> /{" "}
+              Completed: <span className="text-primary">{learned}</span> /{" "}
               {total}
             </p>
 

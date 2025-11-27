@@ -63,7 +63,7 @@ const SideBar = () => {
           </nav>
         </div>
         <div className="w-full">
-          <Button className="w-full" onClick={handleLogout}>
+          <Button className="w-full text-foreground" onClick={handleLogout}>
             {loading ? (
               <Spinner />
             ) : (

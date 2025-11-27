@@ -24,7 +24,6 @@ const Header = ({ setLoading }: { setLoading: (loading: boolean) => void }) => {
             {data && (
               <div
                 onClick={() => setShowMenu((showMenu) => !showMenu)}
-                className="border border-secondary hover:border-primary active:scale-95 rounded-full cursor-pointer transition-all duration-300 delay-75"
               >
                 <UserProfileButton
                   showMenu={showMenu}
