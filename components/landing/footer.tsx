@@ -108,7 +108,7 @@ const FooterSection = () => {
             <Button
               onClick={handleSubscribe}
               disabled={loading}
-              className="w-full sm:w-fit md:w-full bg-secondary hover:bg-secondary/80 text-background font-semibold"
+              className="w-full sm:w-fit md:w-full bg-secondary hover:bg-secondary/80 text-background dark:text-foreground font-semibold"
             >
               {loading ? <Spinner /> : "Subscribe"}
             </Button>

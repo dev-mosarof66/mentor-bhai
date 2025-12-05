@@ -46,7 +46,7 @@ const PricingCard = ({ plan, carousel }: Props) => {
             plan.highlight
               ? "bg-secondary font-bold btn"
               : "bg-primary font-semibold"
-          } text-foreground`}
+          } text-background dark:text-foreground`}
         >
           {plan.button}
         </Button>
